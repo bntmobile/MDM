@@ -16,9 +16,9 @@ select
 	WHEN as4.IDProducto is null and  mdm.IDProducto is  null and mvc.IDProducto is not null  then 'Recurso No existe en AS400 y MDM'
 	WHEN as4.IDProducto is not null and  mdm.IDProducto is  null and mvc.IDProducto is  null  then 'Recurso No existe en MVC y MDM'
 END as EstatusGeneral
-FROM			(SELECT * FROM BS_AS400   WITH(NOLOCK) WHERE clase='PT') as4
-FULL OUTER JOIN (SELECT * FROM BS_MDM     WITH(NOLOCK) WHERE Clase='PT') mdm on as4.IDProducto=mdm.IDProducto
-FULL OUTER JOIN				   BS_MVC  mvc WITH(NOLOCK)  on mdm.IDProducto=mvc.IDProducto or as4.IDProducto=mvc.IDProducto
+FROM			(SELECT * FROM HSVDMDDB00.MDMHERDEZCI.dbo.BS_AS400   WITH(NOLOCK) WHERE clase='PT') as4
+FULL OUTER JOIN (SELECT * FROM HSVDMDDB00.MDMHERDEZCI.dbo.BS_MDM     WITH(NOLOCK) WHERE Clase='PT') mdm on as4.IDProducto=mdm.IDProducto
+FULL OUTER JOIN				   HSVDMDDB00.MDMHERDEZCI.dbo.BS_MVC  mvc WITH(NOLOCK)  on mdm.IDProducto=mvc.IDProducto or as4.IDProducto=mvc.IDProducto
 WHERE 1=1
 AND (as4.IDProducto IS NULL  OR mdm.IDProducto IS NULL OR mvc.IDProducto IS NULL)
  
