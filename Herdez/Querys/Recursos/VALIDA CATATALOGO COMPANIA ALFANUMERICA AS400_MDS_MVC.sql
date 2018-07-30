@@ -10,6 +10,14 @@ select
 ,isnull(mvc.descripcion,'') descripcion_mvc
 ,isnull(mds.descripcion,'') descripcion_mds
 ,isnull(as4.descripcion,'') descripcion_as4
+,'Compañía AlfaNúmerica' as 'ISSUE'
+,
+CASE 
+		WHEN mvc.clave is not null and mds.clave is not null and as4.clave is null then 'Falta en AS400'
+		WHEN mvc.clave is  null and mds.clave is not null and as4.clave is null then 'Falta en AS400 y en MVC'
+
+END Estatus
+
 into #Cat_CompaniaAlfaNumerica
 from 
 	(
@@ -30,3 +38,6 @@ ORDER BY 1,2
 select * 
 from #Cat_CompaniaAlfaNumerica
 where descripcion_as4<>descripcion_mds or descripcion_as4<>descripcion_mds
+
+
+-- Compañía P  esta bien que éste asi, solo en MDS, se deben desactivar las lineas asociadas a esta compañia para que no se puedan seleccionar
