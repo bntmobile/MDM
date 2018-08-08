@@ -30,7 +30,8 @@ FROM OPENQUERY(HDZ54,'SELECT * FROM HDZMEN.FF01 WHERE APL=''EST'' AND st1 = 102 
 )				
 				
 select *,'MARCA' as Tipo from Marca				
-where Estatus<>'OK' --and ID_MDM  is not null				
+where Estatus<>'OK' --and ID_MDM  is not null	
+and (id_mdm is not null	and	id_mdm  not like '$')	
 ORDER BY 1,2				
 
 --SELECT 
