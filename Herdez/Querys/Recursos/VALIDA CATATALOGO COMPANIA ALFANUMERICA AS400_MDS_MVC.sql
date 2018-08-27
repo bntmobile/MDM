@@ -35,9 +35,16 @@ WHERE 1=1
 ORDER BY 1,2
 
 
+
 select * 
 from #Cat_CompaniaAlfaNumerica
 where descripcion_as4<>descripcion_mds or descripcion_as4<>descripcion_mds
 
 
 -- Compañía P  esta bien que éste asi, solo en MDS, se deben desactivar las lineas asociadas a esta compañia para que no se puedan seleccionar
+
+
+
+
+SOLO PT
+
